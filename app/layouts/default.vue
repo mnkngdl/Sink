@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import NumberFlow from '@number-flow/vue'
-import { Menu, Star, X } from 'lucide-vue-next'
-import { GitHubIcon, TelegramIcon, XIcon } from 'vue3-simple-icons'
+import { Menu, X } from 'lucide-vue-next'
+import { TelegramIcon, WhatsAppIcon, XIcon, YouTubeIcon } from 'vue3-simple-icons'
 
 const showMenu = ref(false)
-const { title, telegram, twitter, github } = useAppConfig()
-const { rawStats } = useGithubStats()
+const { title, telegram, twitter, whatsapp, youtube } = useAppConfig()
 </script>
 
 <template>
@@ -93,23 +91,6 @@ const { rawStats } = useGithubStats()
                   md:w-fit
                 "
               >
-                <Button
-                  as-child
-                  variant="outline"
-                  size="sm"
-                >
-                  <a
-                    :href="github"
-                    target="_blank"
-                    :title="$t('layouts.footer.social.github')"
-                    class="flex items-center gap-1.5"
-                  >
-                    <GitHubIcon class="size-4" />
-                    <Star class="size-3" />
-                    <NumberFlow class="tabular-nums" :value="rawStats.stars" />
-                  </a>
-                </Button>
-
                 <SwitchLanguage />
                 <SwitchTheme />
               </div>
@@ -139,8 +120,8 @@ const { rawStats } = useGithubStats()
               md:flex-row md:gap-6
             "
           >
-            <NuxtLink
-              to="/"
+            <a
+              href="https://link.jkt48live.com"
               :title="title"
               aria-label="home"
               class="block size-fit"
@@ -157,22 +138,24 @@ const { rawStats } = useGithubStats()
                 </span>
                 <span class="text-xl font-black">{{ title }}</span>
               </div>
-            </NuxtLink>
-
-            <small class="block text-center text-sm text-muted-foreground">
-              &copy; {{ new Date().getFullYear() }}
-              <a
-                href="https://html.zone"
-                target="_blank"
-                title="HTML.ZONE"
-                class="hover:text-primary"
-              >
-                {{ $t('layouts.footer.copyright') }}
-              </a>
-            </small>
+            </a>
           </div>
 
           <div class="flex justify-center gap-6 text-sm">
+            <a
+              v-if="whatsapp"
+              :href="whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="WhatsApp"
+              aria-label="WhatsApp"
+              class="
+                block text-muted-foreground
+                hover:text-primary
+              "
+            >
+              <WhatsAppIcon class="size-6" />
+            </a>
             <a
               v-if="twitter"
               :href="twitter"
@@ -202,18 +185,18 @@ const { rawStats } = useGithubStats()
               <TelegramIcon class="size-6" />
             </a>
             <a
-              v-if="github"
-              :href="github"
+              v-if="youtube"
+              :href="youtube"
               target="_blank"
               rel="noopener noreferrer"
-              :title="$t('layouts.footer.social.github')"
-              aria-label="GitHub"
+              title="YouTube"
+              aria-label="YouTube"
               class="
                 block text-muted-foreground
                 hover:text-primary
               "
             >
-              <GitHubIcon class="size-6" />
+              <YouTubeIcon class="size-6" />
             </a>
           </div>
         </div>
