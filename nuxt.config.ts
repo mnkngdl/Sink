@@ -44,7 +44,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': {
-      redirect: 'https://manekingidol.github.io',
+      redirect: 'https://linktree.jkt48live.com',
     },
     '/api/**': {
       cors: process.env.NUXT_API_CORS === 'true',
